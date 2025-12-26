@@ -10,16 +10,10 @@
 
             <div class="flex items-center space-x-4">
                 @guest
+                    {{-- Hanya tampil Login --}}
                     <a href="{{ route('login') }}" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                         Login
                     </a>
-
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="text-white bg-blue-600 hover:bg-blue-700 px-3 py-2 rounded-md text-sm font-medium">
-                            Register
-                        </a>
-                    @endif
-
                 @else
                     <a href="{{ url('/dashboard') }}" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                         Dashboard

@@ -1,0 +1,31 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('anggota_keluarga', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama'); // Contoh: "Ayah", "Haikal"
+            $table->string('deskripsi'); // Contoh: "Kepala Keluarga"
+            $table->string('foto'); // URL gambar
+            $table->integer('tingkatan')->default(1); // 1=Pusat, 2=Anak, 3=Cucu
+            $table->integer('urutan')->default(0); // Urutan tampil
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('anggota_keluarga');
+    }
+};

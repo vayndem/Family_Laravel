@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\KenanganKeluarga; // <-- Import model kita
+use App\Models\KenanganKeluarga;
+use App\Models\AnggotaKeluarga;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
@@ -12,12 +13,15 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        // Ambil semua data dari tabel kenangan, urutkan dari yang terbaru
+        // 2. Ambil data kenangan (ini sudah ada)
         $kenangans = KenanganKeluarga::latest()->get();
 
-        // Kirim data tersebut ke view 'welcome'
+        $anggotas = AnggotaKeluarga::orderBy('tingkatan', 'asc')->orderBy('urutan', 'asc')->get();
+
+        // 4. KIRIM KEDUA DATA KE VIEW
         return view('welcome', [
-            'kenangans' => $kenangans
+            'kenangans' => $kenangans,
+            'anggotas' => $anggotas,
         ]);
     }
 }

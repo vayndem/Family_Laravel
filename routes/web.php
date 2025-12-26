@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KenanganKeluargaController;
+use App\Http\Controllers\AnggotaKeluargaController;
 
 
 Route::get('/', [WelcomeController::class, 'index']);
@@ -22,6 +23,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/kenangan/{kenangan}/edit', [KenanganKeluargaController::class, 'edit'])->name('kenangan.edit');
     Route::put('/kenangan/{kenangan}', [KenanganKeluargaController::class, 'update'])->name('kenangan.update');
     Route::delete('/kenangan/destroy-all', [KenanganKeluargaController::class, 'destroyAll'])->name('kenangan.destroyAll');
+
+
+    Route::post('/anggota-keluarga', [AnggotaKeluargaController::class, 'store'])->name('anggota.store');
 });
 
 require __DIR__.'/auth.php';
